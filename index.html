@@ -1,4 +1,142 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tienda de Apps y Juegos</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #eee;
+    margin: 0; padding: 0;
+  }
+  header {
+    background: #1e1e1e;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    flex-grow: 1;
+  }
+  #search {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    width: 200px;
+  }
+  #categoryFilter {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    background: #333;
+    color: #eee;
+  }
+  main {
+    max-width: 1000px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap: 20px;
+    padding: 0 20px 40px;
+  }
+  .card {
+    background: #222;
+    border-radius: 10px;padding: 15px;
+    box-shadow: 0 0 10px #000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 15px #6b4eff;
+  }
+  .card img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    font-size: 18px;
+    color: #6b4eff;
+  }
+  .card p {
+    flex-grow: 1;
+    font-size: 14px;
+    color: #ccc;
+  }
+  .download-btn {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    background: #6b4eff;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: 700;
+    user-select: none;
+  }
+  .download-btn:hover {
+    background: #573ed8;
+  }
+  footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Apps y Juegos</h1>
+  <input type="text" id="search" placeholder="Buscar..." />
+  <select id="categoryFilter">
+    <option value="all">Todas las categorías</option>
+    <option value="juego">Juegos</option>
+    <option value="app">Apps</option>
+  </select>
+</header>
+
+<main id="cardsContainer"><div class="card" data-category="juego" data-title="Juego Fantasía">
+    <img src="https://i.imgur.com/IvV5IvZ.jpg" alt="Juego Fantasía" />
+    <h3>Juego Fantasía</h3>
+    <p>Explora mundos mágicos y desafíos épicos.</p>
+    <a href="#" class="download-btn" onclick="alert('Descarga iniciada para Juego Fantasía'); return false;">Descargar</a>
+  </div>
+
+  <div class="card" data-category="app" data-title="App Utilitaria">
+    <img src="https://i.imgur.com/hf0sRjK.jpg" alt="App Utilitaria" />
+    <h3>App Utilitaria</h3>
+    <p>Herramientas para mejorar tu productividad diaria.</p>
+    <a href="#" class="download-btn" onclick="alert('Descarga iniciada para App Utilitaria'); return false;">Descargar</a>
+  </div>
+
+  <div class="card" data-category="juego" data-title="Juego de Aventura">
+    <img src="https://i.imgur.com/1HuTfD3.jpg" alt="Juego de Aventura" />
+    <h3>Juego de Aventura</h3>
+    <p>Sumérgete en una historia llena de acción y misterio.</p>
+    <a href="#" class="download-btn" onclick="alert('Descarga iniciada para Juego de Aventura'); return false;">Descargar</a>
+  </div>
+
+  <div class="card" data-category="app" data-title="App Creativa">
+    <img src="https://i.imgur.com/1fXjyuj.jpg" alt="App Creativa" />
+    <h3>App Creativa</h3><p>Inspírate y crea con herramientas innovadoras.</p>
+    <a href="#" class="download-btn" onclick="alert('Descarga iniciada para App Creativa'); return false;">Descargar</a>
+  </div>
 <div class="card">
   <img src="https://salamancaalvin.github.io/animated-waffle/img/juego1.jpg" alt="Juego 1">
   <h3>Juego Fantasía</h3>
@@ -26,3 +164,39 @@
   <p>Inspírate y crea con herramientas innovadoras.</p>
   <a class="download-btn" href="#">Descargar</a>
 </div>
+
+</main>
+
+<footer>© 2025 Mi tienda de apps y juegos</footer>
+
+<script>
+  const searchInput = document.getElementById('search');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const cardsContainer = document.getElementById('cardsContainer');
+  const cards = cardsContainer.querySelectorAll('.card');
+
+  function filterCards() {
+    const searchText = searchInput.value.toLowerCase();
+    const category = categoryFilter.value;
+
+    cards.forEach(card => {
+      const title = card.dataset.title.toLowerCase();
+      const cardCategory = card.dataset.category;
+
+      const matchesSearch = title.includes(searchText);
+      const matchesCategory = category === 'all' || cardCategory === category;
+
+      if (matchesSearch && matchesCategory) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  searchInput.addEventListener('input', filterCards);
+  categoryFilter.addEventListener('change', filterCards);
+</script>
+
+</body>
+</html>

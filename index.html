@@ -7,10 +7,56 @@
   <title>Descarga de Apps y Juegos</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #e0eafc, #cfdef3);
       margin: 0;
-      padding: 40px 20px;
+      padding: 30px 20px;
+      box-sizing: border-box;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 250px;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .categories {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .categories button {
+      background: #fff;
+      border: 1px solid #aaa;
+      padding: 8px 15px;
+      border-radius: 20px;
+      margin: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }.categories button:hover {
+      background: #007bff;
+      color: white;
+    }
+
+    .cards-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -18,7 +64,7 @@
     }
 
     .card {
-      background: #ffffffcc; /* blanco semitransparente */
+      background: #ffffffcc;
       backdrop-filter: blur(8px);
       width: 280px;
       border-radius: 15px;
@@ -26,32 +72,23 @@
       padding: 20px;
       box-sizing: border-box;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      transition: 0.3s;
     }
 
     .card img {
       max-width: 100%;
       height: auto;
       border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
       margin-bottom: 15px;
-    }.card h3 {
-      font-size: 1.4rem;
-      color: #333;
-      margin: 10px 0 8px 0;
-      font-weight: 700;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px 0;
     }
 
     .card p {
+      font-size: 0.95rem;
       color: #555;
-      font-size: 1rem;
-      margin-bottom: 18px;
-      line-height: 1.3;
     }
 
     .download-btn {
@@ -59,54 +96,77 @@
       background: linear-gradient(45deg, #6a11cb, #2575fc);
       color: white;
       font-weight: 600;
-      padding: 12px 25px;
+      padding: 10px 20px;
       border-radius: 30px;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(101, 41, 255, 0.4);
-      transition: background 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .download-btn:hover {
-      background: linear-gradient(45deg, #2575fc, #6a11cb);
-      box-shadow: 0 6px 20px rgba(101, 41, 255, 0.6);
-    }
-
-    @media (max-width: 640px) {
-      body {
-        justify-content: center;
-      }
-      .card {
-        width: 90%;
-      }
+      margin-top: 12px;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="/animated-waffle/img/juego1.jpg" alt="Juego 1" />
-    <h3>Juego Fantasía</h3>
-    <p>Explora mundos mágicos y desafíos épicos.</p>
-    <a class="download-btn" href="#">Descargar</a>
+  <div class="header">
+    <h1>Descarga de Apps y Juegos</h1>
   </div>
 
-  <div class="card">
-    <img src="/animated-waffle/img/juego2.jpg" alt="Juego 2" />
-    <h3>App Utilitaria</h3>
-    <p>Herramientas para mejorar tu productividad diaria.</p><a class="download-btn" href="#">Descargar</a>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar apps o juegos..." />
   </div>
 
-  <div class="card">
-    <img src="/animated-waffle/img/juego3.jpg" alt="Juego 3" />
-    <h3>Juego de Aventura</h3>
-    <p>Sumérgete en una historia llena de acción y misterio.</p>
-    <a class="download-btn" href="#">Descargar</a>
+  <div class="categories">
+    <button onclick="filterCategory('todos')">Todos</button><button onclick="filterCategory('juego')">Juegos</button>
+    <button onclick="filterCategory('app')">Apps</button>
   </div>
 
-  <div class="card">
-    <img src="/animated-waffle/img/juego4.jpg" alt="Juego 4" />
-    <h3>App Creativa</h3>
-    <p>Inspírate y crea con herramientas innovadoras.</p>
-    <a class="download-btn" href="#">Descargar</a>
+  <div class="cards-container" id="cardsContainer">
+    <div class="card" data-category="juego">
+      <img src="/animated-waffle/img/juego1.jpg" alt="Juego 1">
+      <h3>Juego Fantasía</h3>
+      <p>Explora mundos mágicos y desafíos épicos.</p>
+      <a class="download-btn" href="#">Descargar</a>
+    </div>
+
+    <div class="card" data-category="app">
+      <img src="/animated-waffle/img/juego2.jpg" alt="App 1">
+      <h3>App Utilitaria</h3>
+      <p>Herramientas para tu productividad diaria.</p>
+      <a class="download-btn" href="#">Descargar</a>
+    </div>
+
+    <div class="card" data-category="juego">
+      <img src="/animated-waffle/img/juego3.jpg" alt="Juego 3">
+      <h3>Juego de Aventura</h3>
+      <p>Historia llena de acción y misterio.</p>
+      <a class="download-btn" href="#">Descargar</a>
+    </div>
+
+    <div class="card" data-category="app">
+      <img src="/animated-waffle/img/juego4.jpg" alt="App 2">
+      <h3>App Creativa</h3>
+      <p>Inspírate y crea con herramientas innovadoras.</p>
+      <a class="download-btn" href="#">Descargar</a>
+    </div>
   </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");const cards = document.querySelectorAll(".card");
+
+    searchInput.addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(filter) ? "block" : "none";
+      });
+    });
+
+    function filterCategory(category) {
+      cards.forEach(card => {
+        if (category === 'todos' || card.dataset.category === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
 </body>
 </html>

@@ -1,29 +1,112 @@
 
-<div class="card">
-  <img src="/animated-waffle/img/juego1.jpg" alt="Juego 1">
-  <h3>Juego Fantasía</h3>
-  <p>Explora mundos mágicos y desafíos épicos.</p>
-  <a class="download-btn" href="#">Descargar</a>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Descarga de Apps y Juegos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
 
-<div class="card">
-  <img src="/animated-waffle/img/juego2.jpg" alt="Juego 2">
-  <h3>App Utilitaria</h3>
-  <p>Herramientas para mejorar tu productividad diaria.</p>
-  <a class="download-btn" href="#">Descargar</a>
-</div>
+    .card {
+      background: #ffffffcc; /* blanco semitransparente */
+      backdrop-filter: blur(8px);
+      width: 280px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-<div class="card">
-  <img src="/animated-waffle/img/juego3.jpg" alt="Juego 3">
-  <h3>Juego de Aventura</h3>
-  <p>Sumérgete en una historia llena de acción y misterio.</p>
-  <a class="download-btn" href="#">Descargar</a>
-</div>
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
 
-<div class="card">
-  <img src="/animated-waffle/img/juego4.jpg" alt="Juego 4">
-  <h3>App Creativa</h3>
-  <p>Inspírate y crea con herramientas innovadoras.</p>
-  <a class="download-btn" href="#">Descargar</a>
-</div>
+    .card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }.card h3 {
+      font-size: 1.4rem;
+      color: #333;
+      margin: 10px 0 8px 0;
+      font-weight: 700;
+    }
 
+    .card p {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      color: white;
+      font-weight: 600;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(101, 41, 255, 0.4);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .download-btn:hover {
+      background: linear-gradient(45deg, #2575fc, #6a11cb);
+      box-shadow: 0 6px 20px rgba(101, 41, 255, 0.6);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        justify-content: center;
+      }
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/animated-waffle/img/juego1.jpg" alt="Juego 1" />
+    <h3>Juego Fantasía</h3>
+    <p>Explora mundos mágicos y desafíos épicos.</p>
+    <a class="download-btn" href="#">Descargar</a>
+  </div>
+
+  <div class="card">
+    <img src="/animated-waffle/img/juego2.jpg" alt="Juego 2" />
+    <h3>App Utilitaria</h3>
+    <p>Herramientas para mejorar tu productividad diaria.</p><a class="download-btn" href="#">Descargar</a>
+  </div>
+
+  <div class="card">
+    <img src="/animated-waffle/img/juego3.jpg" alt="Juego 3" />
+    <h3>Juego de Aventura</h3>
+    <p>Sumérgete en una historia llena de acción y misterio.</p>
+    <a class="download-btn" href="#">Descargar</a>
+  </div>
+
+  <div class="card">
+    <img src="/animated-waffle/img/juego4.jpg" alt="Juego 4" />
+    <h3>App Creativa</h3>
+    <p>Inspírate y crea con herramientas innovadoras.</p>
+    <a class="download-btn" href="#">Descargar</a>
+  </div>
+</body>
+</html>
